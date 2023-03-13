@@ -1,15 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# ## **Empire State Building Game** ##
-
-# Empire State Building Game is a game where players take turns throwing a die 100 times and climbing up the stairs of the Empire State Building based on the results. Each time a player rolls the die, if the result is 1 or 2, the player goes back one step. If the die roll is 3, 4, or 5, the player goes forward one step. If the die roll is 6, the player re-rolls the die and moves forward the number of steps indicated by the new roll. However, there are some restrictions in the game. The player cannot fall below step 0 and there is a 0.1% chance that the player falls down the stairs and starts again from step 0. The goal of the game is to reach the top of the building, represented by step number 60.
-# 
-# **A model will be created that attempts to replicate the game. The goal will be to find the probability of reaching step number 60.**
-
-# In[8]:
-
-
 #numpy and matplotlib imported
 import numpy as np
 import matplotlib.pyplot as plt
@@ -86,4 +74,3 @@ for i in ends[ends >= 60]:
 
 #what's the estimated chance that you'll reach at least 60 steps high if you play this Empire State Building game?
 print('The chance that this end point is greater than or equal to 60 is '+ str((count/z)*100) + '%')
-
