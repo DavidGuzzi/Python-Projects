@@ -31,8 +31,13 @@ df_procesado.loc[atipicos_superiores, 'B'] = df['B'].quantile(0.95)
 
 
 #%%
-df_procesado['B'].skew()
+# df_procesado['B'].skew()
+import pandas as pd
+import numpy as np
+
 data = {'A':['a','b','c','d','e','f','g','h','i','j'],
         'B':[1,1,1,1,2,2,2,2,2,3]}
 df = pd.DataFrame(data)
-set(df['B'])
+# set(df['B'])
+df_np = np.array(df)
+df_np
