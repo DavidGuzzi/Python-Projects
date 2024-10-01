@@ -41,3 +41,14 @@ df = pd.DataFrame(data)
 # set(df['B'])
 df_np = np.array(df)
 df_np
+
+#%%
+
+import numpy as np
+a=np.random.randn(4,3)
+b=np.random.randn(4,1)
+
+c=[]
+for i in range(3):
+        for j in range(4):
+                print(a[i][j]+b[j])
