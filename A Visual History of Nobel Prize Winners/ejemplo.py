@@ -52,3 +52,10 @@ c=[]
 for i in range(3):
         for j in range(4):
                 print(a[i][j]+b[j])
+#%%
+import numpy as np
+x = np.random.rand(3, 2)
+
+y = np.sum(x, axis=0, keepdims=True)
+
+y.shape
