@@ -9,3 +9,4 @@ Meli/requirements.txt
 Meli/src/main.py
 Meli/src/features.py
 Meli/src/model.py
+Meli/data/MLA_100k_checked_v3.jsonlines
