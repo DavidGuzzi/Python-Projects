@@ -1,0 +1,54 @@
+# Environment
+.env
+venv/
+env/
+*.pyc
+__pycache__/
+
+# Data
+data/*.json
+logs/
+*.log
+
+# Exports (SQL backups regenerables)
+exports/full_backup.sql
+exports/schema_only.sql
+exports/data_only.sql
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Database
+*.db
+*.sqlite
+
+# Python
+*.egg-info/
+dist/
+build/
+
+# Docker
+.dockerignore
+
+# Exercise 4 - Jupyter & Analytics
+.ipynb_checkpoints/
+*.ipynb_checkpoints/
+
+# Exercise 4 - Model artifacts (too large, can be regenerated)
+outputs/models/
+*.joblib
+*.pkl
+
+# Exercise 4 - Feature datasets (optional, can be regenerated)
+outputs/features/
+
+# Exercise 4 - Plots (KEEP - required for exam submission)
+!outputs/plots/*.png
+!outputs/plots/*.jpg
+
+# Exercise 4 - Reports (KEEP - useful for documentation)
+!outputs/reports/*.csv
+!outputs/reports/*.txt

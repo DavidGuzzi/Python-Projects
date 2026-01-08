@@ -1,0 +1,67 @@
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: crypto_postgres
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-crypto_data}
+      POSTGRES_USER: ${POSTGRES_USER:-crypto_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-crypto_pass}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./sql:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-crypto_user}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - crypto_network
+
+  # Python Application
+  app:
+    build: .
+    container_name: crypto_app
+    environment:
+      # Database connection
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: ${POSTGRES_DB:-crypto_data}
+      POSTGRES_USER: ${POSTGRES_USER:-crypto_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-crypto_pass}
+
+      # CoinGecko API
+      COINGECKO_API_KEY: ${COINGECKO_API_KEY}
+      COINGECKO_BASE_URL: ${COINGECKO_BASE_URL:-https://api.coingecko.com/api/v3}
+
+      # App config
+      DATA_DIRECTORY: /app/data
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+      MAX_CONCURRENT_REQUESTS: ${MAX_CONCURRENT_REQUESTS:-5}
+
+    volumes:
+      # Persistir datos y logs
+      - ./data:/app/data
+      - ./logs:/app/logs
+      # Desarrollo: montar código en vivo (comentar en producción)
+      - .:/app
+
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+    networks:
+      - crypto_network
+
+    # No comando por defecto - se ejecuta manualmente
+    # Ver ejemplos de uso abajo
+    command: ["--help"]
+
+volumes:
+  postgres_data:
+
+networks:
+  crypto_network:
+    driver: bridge
